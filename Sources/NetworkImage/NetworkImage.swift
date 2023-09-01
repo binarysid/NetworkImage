@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct NetworkImage<Content: View>: View {
+public struct NetworkImage<Content: View>: View {
     private let url: URL
     private let scale: CGFloat
     private let transaction: Transaction
@@ -13,7 +13,7 @@ struct NetworkImage<Content: View>: View {
         self.content = content
     }
     
-    var body: some View {
+    public var body: some View {
         if let cachedImage = ImageCache[url] {
             content(.success(cachedImage))
         } else {
