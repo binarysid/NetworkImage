@@ -6,7 +6,7 @@ public struct NetworkImage<Content: View>: View {
     private let transaction: Transaction
     private let content: (AsyncImagePhase) -> Content
 
-    init(url: URL, scale: CGFloat = 1.0, transaction: Transaction = Transaction(), @ViewBuilder content: @escaping (AsyncImagePhase) -> Content) {
+    public init(url: URL, scale: CGFloat = 1.0, transaction: Transaction = Transaction(), @ViewBuilder content: @escaping (AsyncImagePhase) -> Content) {
         self.url = url
         self.scale = scale
         self.transaction = transaction
