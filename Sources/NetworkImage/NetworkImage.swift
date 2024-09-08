@@ -12,7 +12,7 @@ public struct NetworkImage<Content: View>: View {
         self.transaction = transaction
         self.content = content
     }
-    
+
     public var body: some View {
         if let url = url {
             if let cachedImage = ImageCache[url] {
@@ -31,7 +31,10 @@ public struct NetworkImage<Content: View>: View {
 extension NetworkImage {
     private func cachAndRenderView(by phase: AsyncImagePhase, url: URL) -> some View {
         if case .success(let image) = phase {
-            ImageCache[url] = image
+            // Cache the image when it's successfully loaded
+            if let _ = image.asData() {
+                ImageCache[url] = image
+            }
         }
         return content(phase)
     }
